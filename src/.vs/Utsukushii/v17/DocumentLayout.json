@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\github\\utsukushii\\src\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{43563029-C32E-4323-8D7A-126178D016CE}|ui\\ui.esproj|d:\\github\\utsukushii\\src\\ui\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{43563029-C32E-4323-8D7A-126178D016CE}|ui\\ui.esproj|solutionrelative:ui\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43563029-C32E-4323-8D7A-126178D016CE}|ui\\ui.esproj|d:\\github\\utsukushii\\src\\ui\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{43563029-C32E-4323-8D7A-126178D016CE}|ui\\ui.esproj|solutionrelative:ui\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.tsx",
+              "DocumentMoniker": "D:\\github\\utsukushii\\src\\ui\\src\\main.tsx",
+              "RelativeDocumentMoniker": "ui\\src\\main.tsx",
+              "ToolTip": "D:\\github\\utsukushii\\src\\ui\\src\\main.tsx",
+              "RelativeToolTip": "ui\\src\\main.tsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwcAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-07-19T15:17:50.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.tsx",
+              "DocumentMoniker": "D:\\github\\utsukushii\\src\\ui\\src\\App.tsx",
+              "RelativeDocumentMoniker": "ui\\src\\App.tsx",
+              "ToolTip": "D:\\github\\utsukushii\\src\\ui\\src\\App.tsx",
+              "RelativeToolTip": "ui\\src\\App.tsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-07-19T15:16:50.2Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
