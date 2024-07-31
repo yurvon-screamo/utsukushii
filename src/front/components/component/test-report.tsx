@@ -1,193 +1,106 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/bnOWueJYw54
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 "use client"
 
 import * as React from "react"
 import { useState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table"
-import { Input } from "@/components/ui/input"
+import { ReportContent, State } from "@/lib/model"
 
-export default function TestReport() {
+export interface TestReportProps {
+  content: ReportContent;
+};
+
+export const TestReport: React.FC<TestReportProps> = ({ content }) => {
   const [expandedRow, setExpandedRow] = useState<number | null>()
   const handleRowClick = (rowIndex: number) => {
     setExpandedRow(rowIndex === expandedRow ? null : rowIndex)
   }
-  const testData = [
-    {
-      name: "Login Test",
-      result: "ok",
-      duration: "0.5s",
-      children: [
-        {
-          name: "Username field test",
-          result: "ok",
-          duration: "0.2s",
-        },
-        {
-          name: "Password field test",
-          result: "ok",
-          duration: "0.3s",
-        },
-        {
-          name: "Submit button test",
-          result: "ok",
-          duration: "0.1s",
-        },
-      ],
-    },
-    {
-      name: "Signup Test",
-      result: "error",
-      duration: "1.2s",
-      children: [
-        {
-          name: "Name field test",
-          result: "ok",
-          duration: "0.4s",
-        },
-        {
-          name: "Email field test",
-          result: "error",
-          duration: "0.6s",
-        },
-        {
-          name: "Password field test",
-          result: "ok",
-          duration: "0.2s",
-        },
-      ],
-    },
-    {
-      name: "Forgot Password Test",
-      result: "skip",
-      duration: "0.8s",
-      children: [
-        {
-          name: "Email field test",
-          result: "skip",
-          duration: "0.3s",
-        },
-        {
-          name: "Submit button test",
-          result: "skip",
-          duration: "0.5s",
-        },
-      ],
-    },
-  ]
-  const successfulTests = testData.reduce((count, test) => {
-    if (test.result === "ok") {
-      return count + 1 + test.children.filter((child) => child.result === "ok").length
-    }
-    return count
-  }, 0)
-  const droppedTests = testData.reduce((count, test) => {
-    if (test.result === "error") {
-      return count + 1 + test.children.filter((child) => child.result === "error").length
-    }
-    return count
-  }, 0)
-  const skippedTests = testData.reduce((count, test) => {
-    if (test.result === "skip") {
-      return count + 1 + test.children.filter((child) => child.result === "skip").length
-    }
-    return count
-  }, 0)
-  const totalTests = testData.reduce((count, test) => {
-    return count + 1 + test.children.length
-  }, 0)
-  const testCoverage = Math.round((successfulTests / totalTests) * 100)
+
   return (
     <Card className="w-full max-w-3xl">
-      <CardHeader className="flex items-center justify-between">
 
+      <CardHeader className="flex items-left justify-between">
         <div className="items-center grid grid-cols-3 gap-4">
-
           <div className="flex items-center gap-2">
             <CalendarIcon className="h-3 w-3 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">18:49 June 19 2024</span>
+            <span className="text-xs text-muted-foreground">{content.timestamp}</span>
           </div>
-
-          <CardTitle>Saunter Test Report</CardTitle>
+          <CardTitle>{content.title}</CardTitle>
         </div>
-
       </CardHeader>
+
       <CardContent>
         <div className="grid grid-cols-3 gap-4">
           <div className="flex items-center gap-2">
             <TestTubeIcon className="h-6 w-6 text-primary" />
             <div>
-              <div className="text-lg font-medium">{totalTests}</div>
+              <div className="text-lg font-medium">{content.total}</div>
               <div className="text-sm text-muted-foreground">Total Tests</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <PercentIcon className="h-6 w-6 text-primary" />
             <div>
-              <div className="text-lg font-medium">{testCoverage}%</div>
+              <div className="text-lg font-medium">{content.coverage}%</div>
               <div className="text-sm text-muted-foreground">Test Coverage</div>
             </div>
           </div>
           <div className="flex flex-col items-start gap-2">
             <div className="flex items-center gap-2">
               <CheckIcon className="h-5 w-5 text-green-500" />
-              <div className="text-sm text-muted-foreground">{successfulTests} Successful</div>
+              <div className="text-sm text-muted-foreground">{content.success} Success</div>
             </div>
             <div className="flex items-center gap-2">
               <XIcon className="h-5 w-5 text-red-500" />
-              <div className="text-sm text-muted-foreground">{droppedTests} Dropped</div>
+              <div className="text-sm text-muted-foreground">{content.dropped} Dropped</div>
             </div>
             <div className="flex items-center gap-2">
               <PauseIcon className="h-5 w-5 text-yellow-500" />
-              <div className="text-sm text-muted-foreground">{skippedTests} Skipped</div>
+              <div className="text-sm text-muted-foreground">{content.skipped} Skipped</div>
             </div>
           </div>
         </div>
         <div className="mt-6">
           <Table>
             <TableBody>
-              {testData.map((test, index) => (
+              {content.groups.map((group, index) => (
                 <React.Fragment key={index}>
                   <TableRow
                     onClick={() => handleRowClick(index)}
                     className={`cursor-pointer ${expandedRow === index ? "bg-muted" : ""}`}
                   >
-                    <TableCell className="font-medium">{test.name}</TableCell>
+                    <TableCell className="font-medium">{group.name}</TableCell>
                     <TableCell
-                      className={`font-medium ${test.result === "ok"
-                          ? "text-green-500"
-                          : test.result === "error"
-                            ? "text-red-500"
-                            : "text-yellow-500"
+                      className={`font-medium ${group.state === State.success
+                        ? "text-green-500"
+                        : group.state === State.dropped
+                          ? "text-red-500"
+                          : "text-yellow-500"
                         }`}
                     >
-                      {test.result}
+                      {group.state}
                     </TableCell>
-                    <TableCell>{test.duration}</TableCell>
+                    <TableCell>{group.duration}</TableCell>
                   </TableRow>
                   {expandedRow === index && (
                     <TableRow>
                       <TableCell colSpan={3}>
                         <Table>
                           <TableBody>
-                            {test.children.map((childTest, childIndex) => (
+                            {group.tests.map((test, childIndex) => (
                               <TableRow key={childIndex}>
-                                <TableCell className="font-medium">{childTest.name}</TableCell>
+                                <TableCell className="font-medium">{test.name}</TableCell>
                                 <TableCell
-                                  className={`font-medium ${childTest.result === "ok"
-                                      ? "text-green-500"
-                                      : childTest.result === "error"
-                                        ? "text-red-500"
-                                        : "text-yellow-500"
+                                  className={`font-medium ${test.state === State.success
+                                    ? "text-green-500"
+                                    : test.state === State.dropped
+                                      ? "text-red-500"
+                                      : "text-yellow-500"
                                     }`}
                                 >
-                                  {childTest.result}
+                                  {test.state}
                                 </TableCell>
-                                <TableCell>{childTest.duration}</TableCell>
+                                <TableCell>{test.duration}</TableCell>
                               </TableRow>
                             ))}
                           </TableBody>
