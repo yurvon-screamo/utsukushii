@@ -25,3 +25,8 @@ Convert your test result to beatufy report:
                                                                                               
 allure...                                                                                     
 ```
+
+* [ ] Mvp on junit single input
+* [ ] Remove the dependency: next.js
+* [ ] Minify front code
+* [ ] Release v0.0.1
