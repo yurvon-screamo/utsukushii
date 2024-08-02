@@ -1,29 +1,47 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useState } from "react"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table"
-import { ReportContent, State } from "@/lib/model"
+import * as React from "react";
+import { useState } from "react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
+import { ReportContent, State } from "@/lib/model";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import path from "path";
+import fs from "fs";
 
 export interface TestReportProps {
   content: ReportContent;
+}
+
+export const getServerSideProps: GetServerSideProps<TestReportProps> = async () => {
+  const filePath = path.join(process.cwd(), "public", "data.json");
+  const jsonData: ReportContent = JSON.parse(
+    fs.readFileSync(filePath, "utf-8")
+  );
+
+  return {
+    props: {
+      content: jsonData,
+    },
+  };
 };
 
-export const TestReport: React.FC<TestReportProps> = ({ content }) => {
-  const [expandedRow, setExpandedRow] = useState<number | null>()
+const TestReport = (props: TestReportProps) => {
+  const content = props.content
+  const [expandedRow, setExpandedRow] = useState<number | null>();
   const handleRowClick = (rowIndex: number) => {
-    setExpandedRow(rowIndex === expandedRow ? null : rowIndex)
-  }
+    setExpandedRow(rowIndex === expandedRow ? null : rowIndex);
+  };
 
   return (
     <Card className="w-full max-w-3xl">
-
       <CardHeader className="flex items-left justify-between">
         <div className="items-center grid grid-cols-3 gap-4">
           <div className="flex items-center gap-2">
             <CalendarIcon className="h-3 w-3 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">{content.timestamp}</span>
+            <span className="text-xs text-muted-foreground">
+              {content.timestamp}
+            </span>
           </div>
           <CardTitle>{content.title}</CardTitle>
         </div>
@@ -48,15 +66,21 @@ export const TestReport: React.FC<TestReportProps> = ({ content }) => {
           <div className="flex flex-col items-start gap-2">
             <div className="flex items-center gap-2">
               <CheckIcon className="h-5 w-5 text-green-500" />
-              <div className="text-sm text-muted-foreground">{content.success} Success</div>
+              <div className="text-sm text-muted-foreground">
+                {content.success} Success
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <XIcon className="h-5 w-5 text-red-500" />
-              <div className="text-sm text-muted-foreground">{content.dropped} Dropped</div>
+              <div className="text-sm text-muted-foreground">
+                {content.dropped} Dropped
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <PauseIcon className="h-5 w-5 text-yellow-500" />
-              <div className="text-sm text-muted-foreground">{content.skipped} Skipped</div>
+              <div className="text-sm text-muted-foreground">
+                {content.skipped} Skipped
+              </div>
             </div>
           </div>
         </div>
@@ -67,16 +91,19 @@ export const TestReport: React.FC<TestReportProps> = ({ content }) => {
                 <React.Fragment key={index}>
                   <TableRow
                     onClick={() => handleRowClick(index)}
-                    className={`cursor-pointer ${expandedRow === index ? "bg-muted" : ""}`}
+                    className={`cursor-pointer ${
+                      expandedRow === index ? "bg-muted" : ""
+                    }`}
                   >
                     <TableCell className="font-medium">{group.name}</TableCell>
                     <TableCell
-                      className={`font-medium ${group.state === State.success
-                        ? "text-green-500"
-                        : group.state === State.dropped
+                      className={`font-medium ${
+                        group.state === State.success
+                          ? "text-green-500"
+                          : group.state === State.dropped
                           ? "text-red-500"
                           : "text-yellow-500"
-                        }`}
+                      }`}
                     >
                       {group.state}
                     </TableCell>
@@ -89,14 +116,17 @@ export const TestReport: React.FC<TestReportProps> = ({ content }) => {
                           <TableBody>
                             {group.tests.map((test, childIndex) => (
                               <TableRow key={childIndex}>
-                                <TableCell className="font-medium">{test.name}</TableCell>
+                                <TableCell className="font-medium">
+                                  {test.name}
+                                </TableCell>
                                 <TableCell
-                                  className={`font-medium ${test.state === State.success
-                                    ? "text-green-500"
-                                    : test.state === State.dropped
+                                  className={`font-medium ${
+                                    test.state === State.success
+                                      ? "text-green-500"
+                                      : test.state === State.dropped
                                       ? "text-red-500"
                                       : "text-yellow-500"
-                                    }`}
+                                  }`}
                                 >
                                   {test.state}
                                 </TableCell>
@@ -115,8 +145,10 @@ export const TestReport: React.FC<TestReportProps> = ({ content }) => {
         </div>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
+
+export default TestReport;
 
 function CalendarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -137,9 +169,8 @@ function CalendarIcon(props: React.SVGProps<SVGSVGElement>) {
       <rect width="18" height="18" x="3" y="4" rx="2" />
       <path d="M3 10h18" />
     </svg>
-  )
+  );
 }
-
 
 function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -157,9 +188,8 @@ function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
     >
       <path d="M20 6 9 17l-5-5" />
     </svg>
-  )
+  );
 }
-
 
 function PauseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -178,9 +208,8 @@ function PauseIcon(props: React.SVGProps<SVGSVGElement>) {
       <rect x="14" y="4" width="4" height="16" rx="1" />
       <rect x="6" y="4" width="4" height="16" rx="1" />
     </svg>
-  )
+  );
 }
-
 
 function PercentIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -200,9 +229,8 @@ function PercentIcon(props: React.SVGProps<SVGSVGElement>) {
       <circle cx="6.5" cy="6.5" r="2.5" />
       <circle cx="17.5" cy="17.5" r="2.5" />
     </svg>
-  )
+  );
 }
-
 
 function TestTubeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -222,9 +250,8 @@ function TestTubeIcon(props: React.SVGProps<SVGSVGElement>) {
       <path d="M8.5 2h7" />
       <path d="M14.5 16h-5" />
     </svg>
-  )
+  );
 }
-
 
 function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -243,5 +270,5 @@ function XIcon(props: React.SVGProps<SVGSVGElement>) {
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
-  )
+  );
 }

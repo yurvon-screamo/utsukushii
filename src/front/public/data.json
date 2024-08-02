@@ -1,0 +1,58 @@
+{
+  "title": "Saunter Test Report",
+  "timestamp": "18:49 June 19 2024",
+  "duration": "0.56s",
+  "total": 9,
+  "coverage": 36,
+  "success": 4,
+  "dropped": 2,
+  "skipped": 3,
+  "groups": [
+    {
+      "name": "login test",
+      "state": "success",
+      "duration": "10ms",
+      "tests": [
+        {
+          "name": "login is success",
+          "state": "success",
+          "duration": "3ms"
+        },
+        {
+          "name": "login failed",
+          "state": "success",
+          "duration": "7ms"
+        }
+      ]
+    },
+    {
+      "name": "user test",
+      "state": "dropped",
+      "duration": "30ms",
+      "tests": [
+        {
+          "name": "create user is success",
+          "state": "dropped",
+          "duration": "25ms"
+        },
+        {
+          "name": "create user with invalld name",
+          "state": "success",
+          "duration": "5ms"
+        }
+      ]
+    },
+    {
+      "name": "forgot passwod test",
+      "state": "skipped",
+      "duration": "0ms",
+      "tests": [
+        {
+          "name": "forgot passwod",
+          "state": "skipped",
+          "duration": "0ms"
+        }
+      ]
+    }
+  ]
+}
