@@ -1,5 +1,5 @@
 import TestReport, { TestReportProps } from "@/components/component/test-report";
-import raw from "@/data.json"
+import raw from "@/utsukushii.json"
 
 export default function Page() {
   const jsonView = JSON.stringify(raw)

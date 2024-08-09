@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="26" failures="0" errors="0" time="14.227423">
+	<testsuite tests="0" failures="0" time="0.030000" name="go.bergen.tech/backuper" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="go.bergen.tech/backuper/asyncapi" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.030000" name="go.bergen.tech/backuper/cmd/graphql" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.028000" name="go.bergen.tech/backuper/cmd/nats" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.027000" name="go.bergen.tech/backuper/common" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.028000" name="go.bergen.tech/backuper/gen/audit" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.026000" name="go.bergen.tech/backuper/gen/cluster_contract" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.027000" name="go.bergen.tech/backuper/gen/notify" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.028000" name="go.bergen.tech/backuper/gen/taskservice" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.027000" name="go.bergen.tech/backuper/infrastructure/middleware" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.026000" name="go.bergen.tech/backuper/infrastructure/nats_broker" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.027000" name="go.bergen.tech/backuper/infrastructure/nats_kv" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.005000" name="go.bergen.tech/backuper/infrastructure/nfs" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="1" failures="0" time="0.008000" name="go.bergen.tech/backuper/infrastructure/nfs/client" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+		<testcase classname="go.bergen.tech/backuper/infrastructure/nfs/client" name="TestDialService" time="0.000000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.005000" name="go.bergen.tech/backuper/infrastructure/nfs/client/example/test" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.005000" name="go.bergen.tech/backuper/infrastructure/nfs/client/rpc" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.006000" name="go.bergen.tech/backuper/infrastructure/nfs/client/util" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="2" failures="0" time="0.005000" name="go.bergen.tech/backuper/infrastructure/nfs/client/xdr" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+		<testcase classname="go.bergen.tech/backuper/infrastructure/nfs/client/xdr" name="TestRead" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/infrastructure/nfs/client/xdr" name="TestByteSlice" time="0.000000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.006000" name="go.bergen.tech/backuper/infrastructure/task" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.006000" name="go.bergen.tech/backuper/models" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="23" failures="0" time="1.012000" name="go.bergen.tech/backuper/qa/unit" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Ошибка_выдачи_текущего_состояния_бэкапа" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Ошибка_выдачи_настроек_NFS" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Успешный_кейс_с_двумя_нодами" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestBackup/Отмена_создания_резервной_копии_системы/Проверка_отмены_бэкапа/Успешно_отменен" time="1.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Ошибка_от_нод" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestBackup" time="1.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_отправляется" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_места_достаточно" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_ошибка_получения_свободного_места_в_NFS" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_ошибка_создания_бэкапа" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_бэкап_отменен" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestIsStorageOverflow" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Удаление_графика" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Создание_графика" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Обновление_графика" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Игнорировать" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestDetectScheduleAction" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestCreateCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_создания_крон_выражения/Успешный_сценарий" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestCreateCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_создания_крон_выражения/Ошибка_формата_времени" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestCreateCronExpression" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestParseCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_парсинга_крон_выражения/Успешный_сценарий" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestParseCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_парсинга_крон_выражения/Пустое_крон_выражение_на_входе" time="0.000000"></testcase>
+		<testcase classname="go.bergen.tech/backuper/qa/unit" name="TestParseCronExpression" time="0.000000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.008000" name="go.bergen.tech/backuper/service" timestamp="2024-08-09T00:53:27Z">
+		<properties>
+			<property name="go.version" value="go1.22.3 linux/amd64"></property>
+		</properties>
+	</testsuite>
+</testsuites>
