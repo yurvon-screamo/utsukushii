@@ -19,11 +19,11 @@ Convert your test result to beatufy report:
   vstest ────────────────────►│           tool                    ├───────────────────► report
                               │                                   │                           
                               │                                   │                           
-..other──────────────────────►│                                   │                           
+..allure─────────────────────►│                                   │                           
                               │                                   │                           
                               └───────────────────────────────────┘                           
-                                                                                              
-allure...                                                                                     
+
+other....                                                                                       
 ```
 
 * [ ] Mvp on junit single input
