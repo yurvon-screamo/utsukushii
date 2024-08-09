@@ -16,7 +16,7 @@ Convert your test result to beatufy report:
   junit──────────────────────►│                                   │                           
                               │                                   │                           
                               │                                   │                           
-  vstest ────────────────────►│           tool                    ├───────────────────► report
+  vstest ────────────────────►│           generator               ├───────────────────► report
                               │                                   │                           
                               │                                   │                           
 ..allure─────────────────────►│                                   │                           
