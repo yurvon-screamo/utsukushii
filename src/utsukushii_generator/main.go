@@ -3,11 +3,9 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
+	"utsukushii_generator/cmd"
 	"utsukushii_generator/junit_input"
 	"utsukushii_generator/model"
-
-	"github.com/spf13/cobra"
 )
 
 type InputConverter interface {
@@ -15,7 +13,7 @@ type InputConverter interface {
 }
 
 func main() {
-	Execute()
+	cmd.Execute()
 
 	junitData, err := ioutil.ReadFile("junit.xml")
 	if err != nil {
@@ -46,22 +44,4 @@ func main() {
 	}
 
 	fmt.Println("Test report written to utsukushii.json")
-}
-
-var rootCmd = &cobra.Command{
-	Use:   "hugo",
-	Short: "Hugo is a very fast static site generator",
-	Long: `A Fast and Flexible Static Site Generator built with
-		love by spf13 and friends in Go.
-		Complete documentation is available at http://hugo.spf13.com`,
-	Run: func(cmd *cobra.Command, args []string) {
-		// fmt.Println(*cmd)
-	},
-}
-
-func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
 }
