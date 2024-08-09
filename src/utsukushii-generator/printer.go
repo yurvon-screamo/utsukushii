@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"strconv"
 	"time"
 	"utsukushii_generator/model"
 )
@@ -23,7 +24,7 @@ func convertToJson(report *model.TestReport) ([]byte, error) {
 		group := &jsonGroup{
 			Name:     g.Name,
 			State:    string(g.State),
-			Duration: g.Duration.String(),
+			Duration: strconv.FormatInt(g.Duration.Milliseconds(), 10) + "ms",
 			Tests:    []*jsonTest{},
 		}
 
@@ -31,7 +32,7 @@ func convertToJson(report *model.TestReport) ([]byte, error) {
 			group.Tests = append(group.Tests, &jsonTest{
 				Name:     t.Name,
 				State:    string(t.State),
-				Duration: t.Duration.String(),
+				Duration: strconv.FormatInt(t.Duration.Milliseconds(), 10) + "ms",
 			})
 		}
 

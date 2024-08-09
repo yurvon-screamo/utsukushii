@@ -43,7 +43,7 @@ func convertJUnitToTestReport(report JUnitTestSuites) *model.TestReport {
 		totalSkipped += suite.Skipped
 
 		durationSuiteRaw, _ := strconv.ParseFloat(suite.Time, 64)
-		durationSuite := time.Duration(durationSuiteRaw) * time.Second
+		durationSuite := time.Duration(durationSuiteRaw * float64(time.Second))
 		totalDuration += durationSuite
 
 		group := model.TestGroup{
@@ -58,7 +58,7 @@ func convertJUnitToTestReport(report JUnitTestSuites) *model.TestReport {
 			test := model.Test{
 				Name:     tc.Name,
 				State:    determineTestState(tc),
-				Duration: time.Duration(durationCaseRaw) * time.Second,
+				Duration: time.Duration(durationCaseRaw * float64(time.Second)),
 			}
 			group.Tests = append(group.Tests, test)
 		}
