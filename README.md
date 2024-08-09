@@ -27,6 +27,8 @@ other....
 ```
 
 * [ ] Mvp on junit single input
-* [ ] Remove the dependency: next.js
-* [ ] Minify front code
+* [ ] Test on c#
+* [ ] Test on golang
+* [ ] Test on java
+* [ ] Test on react
 * [ ] Release v0.0.1
