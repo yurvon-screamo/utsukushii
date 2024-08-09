@@ -12,7 +12,7 @@ type JUnitReader struct {
 }
 
 func (r *JUnitReader) Convert() (*model.TestReport, error) {
-	var junitReport JUnitTestSuites
+	var junitReport jUnitTestSuites
 	err := xml.Unmarshal(r.Raw, &junitReport)
 	if err != nil {
 		return nil, err
@@ -23,7 +23,7 @@ func (r *JUnitReader) Convert() (*model.TestReport, error) {
 	return report, nil
 }
 
-func convertJUnitToTestReport(report JUnitTestSuites) *model.TestReport {
+func convertJUnitToTestReport(report jUnitTestSuites) *model.TestReport {
 	totalTests := 0
 	totalFailures := 0
 	totalSkipped := 0
@@ -79,7 +79,7 @@ func convertJUnitToTestReport(report JUnitTestSuites) *model.TestReport {
 	}
 }
 
-func determineState(testSuite JUnitTestSuite) model.TestCaseState {
+func determineState(testSuite jUnitTestSuite) model.TestCaseState {
 	totalErr := testSuite.Errors + testSuite.Failures
 	if totalErr > 0 {
 		return model.StateDropped
@@ -92,7 +92,7 @@ func determineState(testSuite JUnitTestSuite) model.TestCaseState {
 	return model.StateSuccess
 }
 
-func determineTestState(tc JUnitTestCase) model.TestCaseState {
+func determineTestState(tc jUnitTestCase) model.TestCaseState {
 	if tc.Failure != nil {
 		return model.StateDropped
 	}

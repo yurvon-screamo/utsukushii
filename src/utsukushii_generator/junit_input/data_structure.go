@@ -2,12 +2,12 @@ package junit_input
 
 import "encoding/xml"
 
-type JUnitTestSuites struct {
+type jUnitTestSuites struct {
 	XMLName    xml.Name         `xml:"testsuites"`
-	TestSuites []JUnitTestSuite `xml:"testsuite"`
+	TestSuites []jUnitTestSuite `xml:"testsuite"`
 }
 
-type JUnitTestSuite struct {
+type jUnitTestSuite struct {
 	XMLName   xml.Name        `xml:"testsuite"`
 	Name      string          `xml:"name,attr"`
 	Tests     int             `xml:"tests,attr"`
@@ -15,34 +15,34 @@ type JUnitTestSuite struct {
 	Errors    int             `xml:"errors,attr"`
 	Skipped   int             `xml:"skipped,attr"`
 	Time      string          `xml:"time,attr"`
-	TestCases []JUnitTestCase `xml:"testcase"`
+	TestCases []jUnitTestCase `xml:"testcase"`
 }
 
-type JUnitTestCase struct {
+type jUnitTestCase struct {
 	XMLName   xml.Name      `xml:"testcase"`
 	ClassName string        `xml:"classname,attr"`
 	Name      string        `xml:"name,attr"`
 	Time      string        `xml:"time,attr"`
-	Failure   *JUnitFailure `xml:"failure,omitempty"`
-	Error     *JUnitError   `xml:"error,omitempty"`
-	Skipped   *JUnitSkipped `xml:"skipped,omitempty"`
+	Failure   *jUnitFailure `xml:"failure,omitempty"`
+	Error     *jUnitError   `xml:"error,omitempty"`
+	Skipped   *jUnitSkipped `xml:"skipped,omitempty"`
 }
 
-type JUnitFailure struct {
+type jUnitFailure struct {
 	XMLName xml.Name `xml:"failure"`
 	Message string   `xml:"message,attr"`
 	Type    string   `xml:"type,attr"`
 	Text    string   `xml:",chardata"`
 }
 
-type JUnitError struct {
+type jUnitError struct {
 	XMLName xml.Name `xml:"error"`
 	Message string   `xml:"message,attr"`
 	Type    string   `xml:"type,attr"`
 	Text    string   `xml:",chardata"`
 }
 
-type JUnitSkipped struct {
+type jUnitSkipped struct {
 	XMLName xml.Name `xml:"skipped"`
 	Message string   `xml:"message,attr,omitempty"`
 }

@@ -7,7 +7,7 @@ type TestReport struct {
 	Timestamp time.Time     `json:"timestamp"`
 	Duration  time.Duration `json:"duration"`
 	Total     int           `json:"total"`
-	Coverage  int           `json:"coverage"`
+	Coverage  int16         `json:"coverage"`
 	Success   int           `json:"success"`
 	Dropped   int           `json:"dropped"`
 	Skipped   int           `json:"skipped"`

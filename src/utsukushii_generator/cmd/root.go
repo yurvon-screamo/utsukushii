@@ -1,28 +1,54 @@
 package cmd
 
 import (
+	"fmt"
+	"io/ioutil"
 	"os"
+	"utsukushii_generator/json_output"
+	"utsukushii_generator/junit_input"
 
 	"github.com/spf13/cobra"
 )
 
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
-	Use:   "utsukushii_generator",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+func handle(cmd *cobra.Command, args []string) {
+	junitData, err := ioutil.ReadFile(junit)
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		return
+	}
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	junitReader := junit_input.JUnitReader{
+		Raw: junitData,
+	}
+
+	report, err := junitReader.Convert()
+	if err != nil {
+		fmt.Println("Error convert junit:", err)
+		return
+	}
+
+	report.Title = title
+	report.Coverage = coverage
+
+	jsonPrinter := json_output.JsonPrinter{
+		Report: report,
+	}
+
+	jsonData, err := jsonPrinter.Print()
+	if err != nil {
+		fmt.Println("Error convert json:", err)
+		return
+	}
+
+	err = ioutil.WriteFile(output, jsonData, 0644)
+	if err != nil {
+		fmt.Println("Error writing JSON to file:", err)
+		return
+	}
+
+	fmt.Printf("Test report written to %s\n", output)
 }
 
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
@@ -30,14 +56,24 @@ func Execute() {
 	}
 }
 
+var title string
+var junit string
+var coverage int16
+var output string
+
+var rootCmd = &cobra.Command{
+	Use:     "utsukushii_generator",
+	Short:   "utsukushii test-gen",
+	Long:    `utsukushii is a utility for converting your reports to utsukushii format.`,
+	Example: "\nutsukushii_generator --title MyApplication --coverage 67 --junit myJunitReport.xml --output utsukushii.json",
+	Run:     handle,
+}
+
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
+	rootCmd.Flags().StringVarP(&title, "title", "t", "Utsukushii Report", "Report title")
+	rootCmd.Flags().StringVar(&junit, "junit", "", "Junit report path for generate")
+	rootCmd.Flags().Int16Var(&coverage, "coverage", 0, "Code coverage in percent")
+	rootCmd.Flags().StringVarP(&output, "output", "o", "utsukushii.json", "Target utsukushii file path")
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.utsukushii_generator.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.MarkFlagRequired("junit")
 }

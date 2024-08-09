@@ -1,4 +1,4 @@
-package main
+package json_output
 
 import (
 	"encoding/json"
@@ -7,7 +7,13 @@ import (
 	"utsukushii_generator/model"
 )
 
-func convertToJson(report *model.TestReport) ([]byte, error) {
+type JsonPrinter struct {
+	Report *model.TestReport
+}
+
+func (p *JsonPrinter) Print() ([]byte, error) {
+	report := p.Report
+
 	o := jsonRoot{
 		Title:     report.Title,
 		Timestamp: report.Timestamp.Format(time.RFC822),
@@ -47,7 +53,7 @@ type jsonRoot struct {
 	Timestamp string       `json:"timestamp"`
 	Duration  string       `json:"duration"`
 	Total     int          `json:"total"`
-	Coverage  int          `json:"coverage"`
+	Coverage  int16        `json:"coverage"`
 	Success   int          `json:"success"`
 	Dropped   int          `json:"dropped"`
 	Skipped   int          `json:"skipped"`
