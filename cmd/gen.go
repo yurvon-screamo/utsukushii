@@ -3,34 +3,40 @@ package cmd
 import (
 	"fmt"
 	"io/ioutil"
+	"time"
 
 	"github.com/spf13/cobra"
 	"github.com/yurvon-screamo/utsukushii/json_output"
 	"github.com/yurvon-screamo/utsukushii/junit_input"
+	"github.com/yurvon-screamo/utsukushii/model"
 )
 
 func handleGen(cmd *cobra.Command, args []string) {
-	junitData, err := ioutil.ReadFile(junit)
-	if err != nil {
-		fmt.Println("Error reading file:", err)
-		return
+	report := model.TestReport{
+		Title:     title,
+		Coverage:  coverage,
+		Duration:  0,
+		Timestamp: time.Now().UTC(),
 	}
 
-	junitReader := junit_input.JUnitReader{
-		Raw: junitData,
-	}
+	for _, junit := range junits {
+		junitData, err := ioutil.ReadFile(junit)
+		if err != nil {
+			fmt.Println("Error reading file:", err)
+			return
+		}
 
-	report, err := junitReader.Convert()
-	if err != nil {
-		fmt.Println("Error convert junit:", err)
-		return
-	}
+		tests, err := junit_input.Convert(junitData)
+		if err != nil {
+			fmt.Println("Error convert junit:", err)
+			return
+		}
 
-	report.Title = title
-	report.Coverage = coverage
+		report.Enrich(tests)
+	}
 
 	jsonPrinter := json_output.JsonPrinter{
-		Report: report,
+		Report: &report,
 	}
 
 	jsonData, err := jsonPrinter.Print()
@@ -49,7 +55,7 @@ func handleGen(cmd *cobra.Command, args []string) {
 }
 
 var title string
-var junit string
+var junits []string
 var coverage int16
 var output string
 
@@ -65,7 +71,7 @@ func init() {
 	rootCmd.AddCommand(genCmd)
 
 	genCmd.Flags().StringVarP(&title, "title", "t", "Utsukushii Report", "Report title")
-	genCmd.Flags().StringVar(&junit, "junit", "", "Junit report path for generate")
+	genCmd.Flags().StringArrayVar(&junits, "junit", nil, "Junit reports paths for generate")
 	genCmd.Flags().Int16Var(&coverage, "coverage", 0, "Code coverage in percent")
 	genCmd.Flags().StringVarP(&output, "output", "o", "utsukushii.json", "Target utsukushii file path")
 

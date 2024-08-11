@@ -41,7 +41,7 @@ other....
 ## TODO
 
 * [X] Mvp on junit single input
-* [ ] Go serve
+* [X] Go serve
 * [ ] Mvp on junit multi input
 * [ ] Test on c#
 * [ ] Test on golang

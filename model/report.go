@@ -3,22 +3,22 @@ package model
 import "time"
 
 type TestReport struct {
-	Title     string        `json:"title"`
-	Timestamp time.Time     `json:"timestamp"`
-	Duration  time.Duration `json:"duration"`
-	Total     int           `json:"total"`
-	Coverage  int16         `json:"coverage"`
-	Success   int           `json:"success"`
-	Dropped   int           `json:"dropped"`
-	Skipped   int           `json:"skipped"`
-	Tests     []*TestRecord `json:"tests"`
+	Title     string
+	Timestamp time.Time
+	Duration  time.Duration
+	Total     int
+	Coverage  int16
+	Success   int
+	Dropped   int
+	Skipped   int
+	Tests     []*TestRecord
 }
 
 type TestRecord struct {
-	Name     string        `json:"name"`
-	State    TestCaseState `json:"state"`
-	Duration time.Duration `json:"duration"`
-	Tests    []*TestRecord `json:"tests"`
+	Name     string
+	State    TestCaseState
+	Duration time.Duration
+	Tests    []*TestRecord
 }
 
 type TestCaseState string
