@@ -94,8 +94,8 @@ other....
 * [X] Go serve
 * [X] Mvp on junit multi input
 * [X] Docs write
-* [ ] github action to fmt, release
-* [ ] Native go runner
+* [X] github action to fmt, release
+* [X] Native go runner
 * [ ] Native c# runner
 * [ ] Release v0.0.1
 * [ ] github action release
