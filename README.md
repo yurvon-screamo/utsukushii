@@ -40,7 +40,7 @@ Open <http://localhost:8080>
 
 ### Generate content file
 
-Peak your test report(s) (now support junit only), and generate content file:
+Take your test report(s) (now support junit only), and generate content file:
 
 ```bash
 utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml
