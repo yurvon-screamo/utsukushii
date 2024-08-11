@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: setup build
-        uses: ./.github/npm
+      - name: setup golang
+        uses: ./.github/golang
       - name: go test
         run: make unit
