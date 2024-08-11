@@ -2,6 +2,7 @@ coverage
 staticBuild
 utsukushii.json
 **/utsukushii.json
+junit.xml
 
 .idea/
 build/

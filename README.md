@@ -42,7 +42,7 @@ other....
 
 * [X] Mvp on junit single input
 * [X] Go serve
-* [ ] Mvp on junit multi input
+* [X] Mvp on junit multi input
 * [ ] Test on c#
 * [ ] Test on golang
 * [ ] Test on java

@@ -7,7 +7,7 @@ ui-build:
 	cd utsukushii_ui && npm run build && cd ..
 
 unit:
-	go test ./model -v -coverprofile=coverage
+	go test ./junit_input ./model -v -coverprofile=coverage
 
 fmt:
 	go fmt

@@ -46,9 +46,20 @@ func convertJUnitToTestReport(report jUnitTestSuites) *model.TestFile {
 			durationCaseRaw, _ := strconv.ParseFloat(tc.Time, 64)
 			test := model.TestRecord{
 				Name:     tc.Name,
-				State:    determineTestState(tc),
 				Duration: time.Duration(durationCaseRaw * float64(time.Second)),
 			}
+
+			if tc.Failure != nil {
+				test.State = model.StateDropped
+				result.Dropped++
+			} else if tc.Skipped != nil {
+				test.State = model.StateSkipped
+				result.Skipped++
+			} else {
+				test.State = model.StateSuccess
+				result.Success++
+			}
+
 			group.Tests = append(group.Tests, &test)
 		}
 
@@ -65,18 +76,6 @@ func determineState(testSuite jUnitTestSuite) model.TestCaseState {
 	}
 
 	if testSuite.Skipped == testSuite.Tests {
-		return model.StateSkipped
-	}
-
-	return model.StateSuccess
-}
-
-func determineTestState(tc jUnitTestCase) model.TestCaseState {
-	if tc.Failure != nil {
-		return model.StateDropped
-	}
-
-	if tc.Skipped != nil {
 		return model.StateSkipped
 	}
 
