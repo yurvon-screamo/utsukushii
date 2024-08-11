@@ -55,9 +55,9 @@ var output string
 
 var genCmd = &cobra.Command{
 	Use:     "gen",
-	Short:   "Print the version number of Hugo",
-	Long:    `All software has versions. This is Hugo's`,
-	Example: "\nutsukushii_generator --title MyApplication --coverage 67 --junit myJunitReport.xml --output utsukushii.json",
+	Short:   "Generate report content",
+	Long:    `Generate report json-content file from your junit report`,
+	Example: "\nutsukushii_generator gen --title MyApplication --coverage 67 --junit myJunitReport.xml --output utsukushii.json",
 	Run:     handleGen,
 }
 
