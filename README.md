@@ -21,7 +21,7 @@ go install github.com/yurvon-screamo/utsukushii@latest
 
 ## Usage
 
-## Fast start for golang test
+### Golang dev
 
 Run test, gen content and serve:
 
