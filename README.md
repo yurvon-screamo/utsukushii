@@ -105,7 +105,7 @@ other....
 * [X] Mvp on junit single input
 * [X] Go serve
 * [X] Mvp on junit multi input
-* [ ] Docs write
+* [X] Docs write
 * [ ] github action to fmt, release
 * [ ] Native go runner
 * [ ] Native c# runner
