@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/pkg/browser"
 	"github.com/spf13/cobra"
 	"github.com/yurvon-screamo/utsukushii/utsukushii_ui"
 )
@@ -22,11 +23,22 @@ func handleServe(cmd *cobra.Command, args []string) {
 	http.Handle("/", http.FileServer(http.FS(distFS)))
 
 	log.Println("Starting HTTP server at", addr)
+
+	if open {
+		url := addr
+		if addr[0] == ':' {
+			url = "localhost" + url
+		}
+		url = "http://" + url
+		browser.OpenURL(url)
+	}
+
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
 var addr string
 var content string
+var open bool
 
 var serveCmd = &cobra.Command{
 	Use:     "serve",
@@ -41,4 +53,5 @@ func init() {
 
 	serveCmd.Flags().StringVarP(&addr, "addr", "a", ":8080", "Address for listen and serve")
 	serveCmd.Flags().StringVarP(&content, "content", "c", "utsukushii.json", "Utsukushii content file for serve")
+	serveCmd.Flags().BoolVar(&open, "open-browser", true, "Open default browser with report after start")
 }

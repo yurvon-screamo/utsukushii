@@ -18,38 +18,24 @@ go install github.com/yurvon-screamo/utsukushii@latest
 
 ## Fast start for golang test
 
-Install `go-junit-report`:
+Run test, gen content and serve:
 
 ```bash
-go install github.com/jstemmer/go-junit-report/v2@latest
+go test -v --json ./... > go-json-test.log ; utsukushii gen --go-json-test go-json-test.log && utsukushii serve
 ```
-
-Generate report:
-
-```bash
-go test -v 2>&1 ./... | go-junit-report -set-exit-code > junit.xml ; utsukushii gen --junit ./junit.xml
-```
-
-Run serve:
-
-```bash
-utsukushii serve
-```
-
-Open <http://localhost:8080>
 
 ### Generate content file
 
-Take your test report(s) (now support junit only), and generate content file:
+Take your test report(s) (now support junit and go test --json output), and generate content file:
 
 ```bash
-utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml
+utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml --go-json-test my-go-json-test-1.log --go-json-test my-go-json-test-2.log
 ```
 
 if necessary add coverage, output path and report title params:
 
 ```bash
-utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml -o my-utsukushii.json -t "my report" --coverage 65
+utsukushii gen --junit ./junit.xml --junit -o my-utsukushii.json -t "my report" --coverage 65
 ```
 
 ### Serve
@@ -65,6 +51,8 @@ or add addr and content path params (on default ":8080" and "utsukushii.json"):
 ```bash
 utsukushii serve --addr :18181 --content my-utsukushii.json
 ```
+
+add '--open-browser false' to disable browser opening
 
 ## Design
 
