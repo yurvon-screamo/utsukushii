@@ -25,7 +25,7 @@ go install github.com/jstemmer/go-junit-report/v2@latest
 Generate report:
 
 ```bash
-go test -v 2>&1 ./... | go-junit-report -set-exit-code > junit.xml && utsukushii gen --junit ./junit.xml
+go test -v 2>&1 ./... | go-junit-report -set-exit-code > junit.xml ; utsukushii gen --junit ./junit.xml
 ```
 
 Run serve:
