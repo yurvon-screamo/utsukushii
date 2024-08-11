@@ -78,7 +78,7 @@ UJ:
 2) generate utusukushi content file
 3) run web server with utusukushi ui with content file  
 
-![target](target.png)
+![target](1target.png)
 
 ```ascii
               1. merge and group multi reports                                                
