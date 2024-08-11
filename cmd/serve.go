@@ -4,9 +4,9 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
-	"utsukushii/utsukushii_ui"
 
 	"github.com/spf13/cobra"
+	"github.com/yurvon-screamo/utsukushii/utsukushii_ui"
 )
 
 func handleServe(cmd *cobra.Command, args []string) {

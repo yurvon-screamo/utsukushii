@@ -3,10 +3,10 @@ package cmd
 import (
 	"fmt"
 	"io/ioutil"
-	"utsukushii/json_output"
-	"utsukushii/junit_input"
 
 	"github.com/spf13/cobra"
+	"github.com/yurvon-screamo/utsukushii/json_output"
+	"github.com/yurvon-screamo/utsukushii/junit_input"
 )
 
 func handleGen(cmd *cobra.Command, args []string) {

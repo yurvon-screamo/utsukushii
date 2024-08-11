@@ -1,4 +1,4 @@
-module utsukushii
+module github.com/yurvon-screamo/utsukushii
 
 go 1.22.2
 

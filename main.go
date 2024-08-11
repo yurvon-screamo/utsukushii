@@ -1,7 +1,7 @@
 package main
 
 import (
-	"utsukushii/cmd"
+	"github.com/yurvon-screamo/utsukushii/cmd"
 )
 
 func main() {
