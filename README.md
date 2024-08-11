@@ -14,6 +14,28 @@ go install github.com/yurvon-screamo/utsukushii@latest
 
 ## Usage
 
+## Fast start for golang test
+
+Install `go-junit-report`:
+
+```bash
+go install github.com/jstemmer/go-junit-report/v2@latest
+```
+
+Generate report:
+
+```bash
+go test -v 2>&1 ./... | go-junit-report -set-exit-code > junit.xml && utsukushii gen --junit ./junit.xml
+```
+
+Run serve:
+
+```bash
+utsukushii serve
+```
+
+Open <http://localhost:8080>
+
 ### Generate content file
 
 Peak your test test report(s) (now support junit only), and generate content file:
