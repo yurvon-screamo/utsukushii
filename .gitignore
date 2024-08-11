@@ -1,5 +1,6 @@
 staticBuild
-src/**/utsukushii.json
+utsukushii.json
+**/utsukushii.json
 
 .idea/
 build/
