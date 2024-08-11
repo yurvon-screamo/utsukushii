@@ -4,7 +4,7 @@ A set of utilities that will allow you to create a beautiful test report for you
 
 > in development
 
-![target](example.png)
+![example](example.png)
 
 ## Install
 
@@ -40,7 +40,7 @@ Open <http://localhost:8080>
 
 ### Generate content file
 
-Peak your test test report(s) (now support junit only), and generate content file:
+Peak your test report(s) (now support junit only), and generate content file:
 
 ```bash
 utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml
