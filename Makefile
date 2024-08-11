@@ -1,4 +1,4 @@
-all: fmt build test
+all: fmt build unit
 
 build: ui-build 
 	go build
