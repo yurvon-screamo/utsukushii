@@ -4,6 +4,8 @@ A set of utilities that will allow you to create a beautiful test report for you
 
 > in development
 
+![target](1target.png)
+
 ## Install
 
 With go:
@@ -77,8 +79,6 @@ UJ:
    * native run: dotnet, go, cypress, ???
 2) generate utusukushi content file
 3) run web server with utusukushi ui with content file  
-
-![target](1target.png)
 
 ```ascii
               1. merge and group multi reports                                                
