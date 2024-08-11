@@ -68,7 +68,13 @@ func TestValidJunitReportIsConverted(t *testing.T) {
 	assertJUnitGroup(t, group2, "github.com/yurvon-screamo/utsukushii/junit_input", 391*time.Millisecond, model.StateDropped, 3)
 	assertJUnitTest(t, group2.Tests[0], "TestSkip", 0*time.Second, model.StateSkipped, &log)
 	assertJUnitTest(t, group2.Tests[1], "TestInvalidJunitReportIsReturnError", 0*time.Second, model.StateSuccess, nil)
-	log = "Failed"
+	log = `convert_test.go:53: 
+        	Error Trace:	D:/github/utsukushii/junit_input/convert_test.go:53
+        	Error:      	Not equal: 
+        	            	expected: 10
+        	            	actual  : 1
+        	Test:       	TestValidJunitReportIsConverted
+        	Messages:   	Skipped must be 1`
 	assertJUnitTest(t, group2.Tests[2], "TestValidJunitReportIsConverted", 1*time.Second, model.StateDropped, &log)
 }
 
