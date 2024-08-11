@@ -4,7 +4,7 @@ A set of utilities that will allow you to create a beautiful test report for you
 
 > in development
 
-![target](1target.png)
+![target](example.png)
 
 ## Install
 
