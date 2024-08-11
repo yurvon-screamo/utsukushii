@@ -3,14 +3,13 @@ package cmd
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
 	"utsukushii_generator/json_output"
 	"utsukushii_generator/junit_input"
 
 	"github.com/spf13/cobra"
 )
 
-func handle(cmd *cobra.Command, args []string) {
+func handleGen(cmd *cobra.Command, args []string) {
 	junitData, err := ioutil.ReadFile(junit)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
@@ -49,31 +48,26 @@ func handle(cmd *cobra.Command, args []string) {
 	fmt.Printf("Test report written to %s\n", output)
 }
 
-func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
-}
-
 var title string
 var junit string
 var coverage int16
 var output string
 
-var rootCmd = &cobra.Command{
-	Use:     "utsukushii_generator",
-	Short:   "utsukushii test-gen",
-	Long:    `utsukushii is a utility for converting your reports to utsukushii format.`,
+var genCmd = &cobra.Command{
+	Use:     "gen",
+	Short:   "Print the version number of Hugo",
+	Long:    `All software has versions. This is Hugo's`,
 	Example: "\nutsukushii_generator --title MyApplication --coverage 67 --junit myJunitReport.xml --output utsukushii.json",
-	Run:     handle,
+	Run:     handleGen,
 }
 
 func init() {
-	rootCmd.Flags().StringVarP(&title, "title", "t", "Utsukushii Report", "Report title")
-	rootCmd.Flags().StringVar(&junit, "junit", "", "Junit report path for generate")
-	rootCmd.Flags().Int16Var(&coverage, "coverage", 0, "Code coverage in percent")
-	rootCmd.Flags().StringVarP(&output, "output", "o", "utsukushii.json", "Target utsukushii file path")
+	rootCmd.AddCommand(genCmd)
 
-	rootCmd.MarkFlagRequired("junit")
+	genCmd.Flags().StringVarP(&title, "title", "t", "Utsukushii Report", "Report title")
+	genCmd.Flags().StringVar(&junit, "junit", "", "Junit report path for generate")
+	genCmd.Flags().Int16Var(&coverage, "coverage", 0, "Code coverage in percent")
+	genCmd.Flags().StringVarP(&output, "output", "o", "utsukushii.json", "Target utsukushii file path")
+
+	genCmd.MarkFlagRequired("junit")
 }

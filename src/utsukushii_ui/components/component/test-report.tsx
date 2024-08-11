@@ -11,7 +11,7 @@ export interface TestReportProps {
 }
 
 export default function TestReport(props: TestReportProps) {
-  const content = props.content
+  const content = props.content;
 
   const [expandedRow, setExpandedRow] = useState<number | null>();
   const handleRowClick = (rowIndex: number) => {
@@ -19,7 +19,7 @@ export default function TestReport(props: TestReportProps) {
   };
 
   return (
-    <Card className="w-full max-w-3xl">
+    <Card className="w-full">
       <CardHeader className="flex items-left justify-between">
         <div className="items-center grid grid-cols-3 gap-4">
           <div className="flex items-center gap-2">
@@ -131,7 +131,7 @@ export default function TestReport(props: TestReportProps) {
       </CardContent>
     </Card>
   );
-};
+}
 
 function CalendarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
