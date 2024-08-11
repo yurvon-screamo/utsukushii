@@ -6,7 +6,7 @@
 
 Main goal:
 
-> Convert and present test result to beatufy report
+> Convert test result into beatufy report and present it
 
 UJ:
 
@@ -14,7 +14,7 @@ UJ:
    * format: junit, ???
    * native run: dotnet, go, cypress, ???
 2) generate utusukushi content file
-3) run web server from utusukushi ui with content file  
+3) run web server with utusukushi ui with content file  
 
 ![target](target.png)
 
