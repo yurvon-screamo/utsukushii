@@ -8,8 +8,16 @@ export interface TestLogProps {
 }
 
 export default function TestLog(props: TestLogProps) {
+  const fadeInStyle = {
+    'white-space': "pre-wrap",
+    transition: "opacity 500ms linear",
+  };
+
   return (
-    <div className="flex w-full max-w-6xl text-sm text-muted-foreground">
+    <div
+      style={fadeInStyle}
+      className="flex w-full text-xs"
+    >
       {props.testLog}
     </div>
   );
