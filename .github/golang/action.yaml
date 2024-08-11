@@ -1,0 +1,10 @@
+name: golang setup
+description: "base golang setup for project"
+runs:
+  using: composite
+  steps:
+    - name: setup
+      id: golang-dotnet
+      uses: actions/setup-go@v5.0.2
+      with:
+        go-version-file: go.mod

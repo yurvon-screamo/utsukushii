@@ -1,0 +1,10 @@
+name: npm setup
+description: "base npm setup for project"
+runs:
+  using: composite
+  steps:
+    - name: setup golang
+      uses: ./.github/golang
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "lts/*"
