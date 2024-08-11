@@ -1,6 +1,46 @@
 # utsukushii
 
+A set of utilities that will allow you to create a beautiful test report for your application.
+
 > in development
+
+## Install
+
+With go:
+
+```bash
+go install github.com/yurvon-screamo/utsukushii@latest
+```
+
+## Usage
+
+### Generate content file
+
+Peak your test test report(s) (now support junit only), and generate content file:
+
+```bash
+utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml
+```
+
+if necessary add coverage, output path and report title params:
+
+```bash
+utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml -o my-utsukushii.json -t "my report" --coverage 65
+```
+
+### Serve
+
+Run web-ui for given content file:
+
+```bash
+utsukushii serve
+```
+
+or add addr and content path params (on default ":8080" and "utsukushii.json"):
+
+```bash
+utsukushii serve --addr :18181 --content my-utsukushii.json
+```
 
 ## Design
 
