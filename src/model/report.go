@@ -11,20 +11,14 @@ type TestReport struct {
 	Success   int           `json:"success"`
 	Dropped   int           `json:"dropped"`
 	Skipped   int           `json:"skipped"`
-	Groups    []TestGroup   `json:"groups"`
+	Tests     []*TestRecord `json:"tests"`
 }
 
-type TestGroup struct {
+type TestRecord struct {
 	Name     string        `json:"name"`
 	State    TestCaseState `json:"state"`
 	Duration time.Duration `json:"duration"`
-	Tests    []Test        `json:"tests"`
-}
-
-type Test struct {
-	Name     string        `json:"name"`
-	State    TestCaseState `json:"state"`
-	Duration time.Duration `json:"duration"`
+	Tests    []*TestRecord `json:"tests"`
 }
 
 type TestCaseState string

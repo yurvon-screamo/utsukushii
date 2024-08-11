@@ -23,52 +23,49 @@ func (p *JsonPrinter) Print() ([]byte, error) {
 		Success:   report.Success,
 		Dropped:   report.Dropped,
 		Skipped:   report.Skipped,
-		Groups:    []*jsonGroup{},
+		Tests:     []*jsonTest{},
 	}
 
-	for _, g := range report.Groups {
-		group := &jsonGroup{
-			Name:     g.Name,
-			State:    string(g.State),
-			Duration: strconv.FormatInt(g.Duration.Milliseconds(), 10) + "ms",
-			Tests:    []*jsonTest{},
-		}
-
-		for _, t := range g.Tests {
-			group.Tests = append(group.Tests, &jsonTest{
-				Name:     t.Name,
-				State:    string(t.State),
-				Duration: strconv.FormatInt(t.Duration.Milliseconds(), 10) + "ms",
-			})
-		}
-
-		o.Groups = append(o.Groups, group)
-	}
+	o.Tests = mapTestRecords(report.Tests)
 
 	return json.MarshalIndent(o, "", "  ")
 }
 
-type jsonRoot struct {
-	Title     string       `json:"title"`
-	Timestamp string       `json:"timestamp"`
-	Duration  string       `json:"duration"`
-	Total     int          `json:"total"`
-	Coverage  int16        `json:"coverage"`
-	Success   int          `json:"success"`
-	Dropped   int          `json:"dropped"`
-	Skipped   int          `json:"skipped"`
-	Groups    []*jsonGroup `json:"groups"`
+func mapTestRecords(sourceTests []*model.TestRecord) []*jsonTest {
+	jsonTests := []*jsonTest{}
+
+	for _, g := range sourceTests {
+		test := &jsonTest{
+			Name:     g.Name,
+			State:    string(g.State),
+			Duration: strconv.FormatInt(g.Duration.Milliseconds(), 10) + "ms",
+		}
+
+		if g.Tests != nil && len(g.Tests) > 0 {
+			test.Tests = mapTestRecords(g.Tests)
+		}
+
+		jsonTests = append(jsonTests, test)
+	}
+
+	return jsonTests
 }
 
-type jsonGroup struct {
+type jsonRoot struct {
+	Title     string      `json:"title"`
+	Timestamp string      `json:"timestamp"`
+	Duration  string      `json:"duration"`
+	Total     int         `json:"total"`
+	Coverage  int16       `json:"coverage"`
+	Success   int         `json:"success"`
+	Dropped   int         `json:"dropped"`
+	Skipped   int         `json:"skipped"`
+	Tests     []*jsonTest `json:"tests"`
+}
+
+type jsonTest struct {
 	Name     string      `json:"name"`
 	State    string      `json:"state"`
 	Duration string      `json:"duration"`
 	Tests    []*jsonTest `json:"tests"`
-}
-
-type jsonTest struct {
-	Name     string `json:"name"`
-	State    string `json:"state"`
-	Duration string `json:"duration"`
 }

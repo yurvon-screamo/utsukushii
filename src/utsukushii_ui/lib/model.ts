@@ -1,30 +1,24 @@
 export interface ReportContent {
-    title: string
-    timestamp: string
-    duration: string
-    total: number
-    coverage: number
-    success: number
-    dropped: number
-    skipped: number
-    groups: TestGroup[]
+  title: string;
+  timestamp: string;
+  duration: string;
+  total: number;
+  coverage: number;
+  success: number;
+  dropped: number;
+  skipped: number;
+  tests: TestRecord[];
 }
 
-export interface TestGroup {
-    name: string
-    state: State
-    duration: string
-    tests: Test[]
-}
-
-export interface Test {
-    name: string
-    state: State
-    duration: string
+export interface TestRecord {
+  name: string;
+  state: State;
+  duration: string;
+  tests: TestRecord[];
 }
 
 export enum State {
-    success = "success",
-    dropped = "dropped",
-    skipped = "skipped",
-} 
+  success = "success",
+  dropped = "dropped",
+  skipped = "skipped",
+}

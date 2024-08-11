@@ -31,7 +31,7 @@ func convertJUnitToTestReport(report jUnitTestSuites) *model.TestReport {
 	var totalDuration time.Duration
 	totalDuration = 0
 
-	var groups []model.TestGroup
+	var groups []*model.TestRecord
 
 	for _, suite := range report.TestSuites {
 		if suite.Tests == 0 {
@@ -46,24 +46,24 @@ func convertJUnitToTestReport(report jUnitTestSuites) *model.TestReport {
 		durationSuite := time.Duration(durationSuiteRaw * float64(time.Second))
 		totalDuration += durationSuite
 
-		group := model.TestGroup{
+		group := model.TestRecord{
 			Name:     suite.Name,
 			State:    determineState(suite),
 			Duration: durationSuite,
-			Tests:    []model.Test{},
+			Tests:    []*model.TestRecord{},
 		}
 
 		for _, tc := range suite.TestCases {
 			durationCaseRaw, _ := strconv.ParseFloat(tc.Time, 64)
-			test := model.Test{
+			test := model.TestRecord{
 				Name:     tc.Name,
 				State:    determineTestState(tc),
 				Duration: time.Duration(durationCaseRaw * float64(time.Second)),
 			}
-			group.Tests = append(group.Tests, test)
+			group.Tests = append(group.Tests, &test)
 		}
 
-		groups = append(groups, group)
+		groups = append(groups, &group)
 	}
 
 	return &model.TestReport{
@@ -75,7 +75,7 @@ func convertJUnitToTestReport(report jUnitTestSuites) *model.TestReport {
 		Success:   totalTests - totalFailures - totalSkipped,
 		Dropped:   totalFailures,
 		Skipped:   totalSkipped,
-		Groups:    groups,
+		Tests:     groups,
 	}
 }
 
