@@ -21,7 +21,7 @@ go install github.com/yurvon-screamo/utsukushii@latest
 Run test, gen content and serve:
 
 ```bash
-go test -v --json ./... > go-json-test.log ; utsukushii gen --go-json-test go-json-test.log && utsukushii serve
+go test -v --json ./... | utsukushii go-dev
 ```
 
 ### Generate content file
