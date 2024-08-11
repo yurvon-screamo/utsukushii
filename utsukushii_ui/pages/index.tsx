@@ -10,8 +10,6 @@ export default function Page() {
   if (isLoading) return <div>loading...</div>;
 
   return (
-    <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
       <TestReport content={JSON.parse(data)} />
-    </div>
   );
 }

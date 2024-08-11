@@ -19,6 +19,7 @@ type TestRecord struct {
 	State    TestCaseState
 	Duration time.Duration
 	Tests    []*TestRecord
+	Log      *string
 }
 
 type TestCaseState string

@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ReportContent } from "@/lib/model";
 import TestReportRow from "./test-report-row";
@@ -13,67 +12,66 @@ export interface TestReportProps {
 export default function TestReport(props: TestReportProps) {
   const content = props.content;
 
-  const [expandedRow, setExpandedRow] = useState<number | null>();
-  const handleRowClick = (rowIndex: number) => {
-    setExpandedRow(rowIndex === expandedRow ? null : rowIndex);
-  };
-
   return (
-    <Card className="w-full">
-      <CardHeader className="flex items-left justify-between">
-        <div className="items-center grid grid-cols-3 gap-4">
-          <div className="flex items-center gap-2">
-            <CalendarIcon className="h-3 w-3 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">
-              {content.timestamp}
-            </span>
+    <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+      <Card className="w-full">
+        <CardHeader className="flex items-left justify-between">
+          <div className="items-center grid grid-cols-3 gap-4">
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="h-3 w-3 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">
+                {content.timestamp}
+              </span>
+            </div>
+            <CardTitle>{content.title}</CardTitle>
           </div>
-          <CardTitle>{content.title}</CardTitle>
-        </div>
-      </CardHeader>
+        </CardHeader>
 
-      <CardContent>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="flex items-center gap-2">
-            <TestTubeIcon className="h-6 w-6 text-primary" />
-            <div>
-              <div className="text-lg font-medium">{content.total}</div>
-              <div className="text-sm text-muted-foreground">Total Tests</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <PercentIcon className="h-6 w-6 text-primary" />
-            <div>
-              <div className="text-lg font-medium">{content.coverage}%</div>
-              <div className="text-sm text-muted-foreground">Test Coverage</div>
-            </div>
-          </div>
-          <div className="flex flex-col items-start gap-2">
+        <CardContent>
+          <div className="grid grid-cols-3 gap-4">
             <div className="flex items-center gap-2">
-              <CheckIcon className="h-5 w-5 text-green-500" />
-              <div className="text-sm text-muted-foreground">
-                {content.success} Success
+              <TestTubeIcon className="h-6 w-6 text-primary" />
+              <div>
+                <div className="text-lg font-medium">{content.total}</div>
+                <div className="text-sm text-muted-foreground">Total Tests</div>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <XIcon className="h-5 w-5 text-red-500" />
-              <div className="text-sm text-muted-foreground">
-                {content.dropped} Dropped
+              <PercentIcon className="h-6 w-6 text-primary" />
+              <div>
+                <div className="text-lg font-medium">{content.coverage}%</div>
+                <div className="text-sm text-muted-foreground">
+                  Test Coverage
+                </div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <PauseIcon className="h-5 w-5 text-yellow-500" />
-              <div className="text-sm text-muted-foreground">
-                {content.skipped} Skipped
+            <div className="flex flex-col items-start gap-2">
+              <div className="flex items-center gap-2">
+                <CheckIcon className="h-5 w-5 text-green-500" />
+                <div className="text-sm text-muted-foreground">
+                  {content.success} Success
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <XIcon className="h-5 w-5 text-red-500" />
+                <div className="text-sm text-muted-foreground">
+                  {content.dropped} Dropped
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <PauseIcon className="h-5 w-5 text-yellow-500" />
+                <div className="text-sm text-muted-foreground">
+                  {content.skipped} Skipped
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-6">
-          <TestReportRow records={content.tests}></TestReportRow>
-        </div>
-      </CardContent>
-    </Card>
+          <div className="mt-6">
+            <TestReportRow records={content.tests}></TestReportRow>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
