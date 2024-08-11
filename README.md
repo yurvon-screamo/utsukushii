@@ -48,4 +48,6 @@ other....
 * [ ] Test on java
 * [ ] Test on react
 * [ ] Docs write
+* [ ] github action to fmt, release
 * [ ] Release v0.0.1
+* [ ] github action release
