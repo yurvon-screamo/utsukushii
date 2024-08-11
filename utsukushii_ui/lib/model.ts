@@ -14,6 +14,7 @@ export interface TestRecord {
   name: string;
   state: State;
   duration: string;
+  log: string | null;
   tests: TestRecord[];
 }
 
