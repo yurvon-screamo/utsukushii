@@ -3,6 +3,7 @@ package junit_input
 import (
 	"encoding/xml"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/yurvon-screamo/utsukushii/model"
@@ -52,9 +53,24 @@ func convertJUnitToTestReport(report jUnitTestSuites) *model.TestFile {
 			if tc.Failure != nil {
 				test.State = model.StateDropped
 				result.Dropped++
+				if tc.Failure.Text != "" {
+					tc.Failure.Text = strings.TrimSpace(tc.Failure.Text)
+					test.Log = &tc.Failure.Text
+				}
+			} else if tc.Error != nil {
+				test.State = model.StateDropped
+				result.Dropped++
+				if tc.Error.Text != "" {
+					tc.Error.Text = strings.TrimSpace(tc.Error.Text)
+					test.Log = &tc.Error.Text
+				}
 			} else if tc.Skipped != nil {
 				test.State = model.StateSkipped
 				result.Skipped++
+				if tc.Skipped.Message != "" {
+					tc.Skipped.Message = strings.TrimSpace(tc.Skipped.Message)
+					test.Log = &tc.Skipped.Message
+				}
 			} else {
 				test.State = model.StateSuccess
 				result.Success++

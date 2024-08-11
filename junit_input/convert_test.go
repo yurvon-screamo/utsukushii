@@ -61,13 +61,15 @@ func TestValidJunitReportIsConverted(t *testing.T) {
 
 	group1 := tests.Records[0]
 	assertJUnitGroup(t, group1, "github.com/yurvon-screamo/utsukushii/model", 1*time.Second, model.StateSuccess, 1)
-	assertJUnitTest(t, group1.Tests[0], "TestReportIsEnriched", 1*time.Second, model.StateSuccess)
+	assertJUnitTest(t, group1.Tests[0], "TestReportIsEnriched", 1*time.Second, model.StateSuccess, nil)
 
 	group2 := tests.Records[1]
+	log := "Skipped"
 	assertJUnitGroup(t, group2, "github.com/yurvon-screamo/utsukushii/junit_input", 391*time.Millisecond, model.StateDropped, 3)
-	assertJUnitTest(t, group2.Tests[0], "TestSkip", 0*time.Second, model.StateSkipped)
-	assertJUnitTest(t, group2.Tests[1], "TestInvalidJunitReportIsReturnError", 0*time.Second, model.StateSuccess)
-	assertJUnitTest(t, group2.Tests[2], "TestValidJunitReportIsConverted", 1*time.Second, model.StateDropped)
+	assertJUnitTest(t, group2.Tests[0], "TestSkip", 0*time.Second, model.StateSkipped, &log)
+	assertJUnitTest(t, group2.Tests[1], "TestInvalidJunitReportIsReturnError", 0*time.Second, model.StateSuccess, nil)
+	log = "Failed"
+	assertJUnitTest(t, group2.Tests[2], "TestValidJunitReportIsConverted", 1*time.Second, model.StateDropped, &log)
 }
 
 func assertJUnitGroup(
@@ -90,10 +92,12 @@ func assertJUnitTest(
 	test *model.TestRecord,
 	name string,
 	duration time.Duration,
-	testCase model.TestCaseState) {
+	testCase model.TestCaseState,
+	log *string) {
 
 	assert.Equal(t, name, test.Name)
 	assert.Equal(t, duration, test.Duration)
 	assert.Equal(t, testCase, test.State)
+	assert.Equal(t, log, test.Log)
 	assert.Nil(t, test.Tests)
 }

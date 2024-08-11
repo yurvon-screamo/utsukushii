@@ -37,6 +37,7 @@ func mapTestRecords(sourceTests []*model.TestRecord) []*jsonTest {
 
 	for _, g := range sourceTests {
 		test := &jsonTest{
+			Log:      g.Log,
 			Name:     g.Name,
 			State:    string(g.State),
 			Duration: strconv.FormatInt(g.Duration.Milliseconds(), 10) + "ms",
@@ -69,4 +70,5 @@ type jsonTest struct {
 	State    string      `json:"state"`
 	Duration string      `json:"duration"`
 	Tests    []*jsonTest `json:"tests"`
+	Log      *string     `json:"log"`
 }
