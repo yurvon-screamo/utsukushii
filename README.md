@@ -43,11 +43,9 @@ other....
 * [X] Mvp on junit single input
 * [X] Go serve
 * [X] Mvp on junit multi input
-* [ ] Test on c#
-* [ ] Test on golang
-* [ ] Test on java
-* [ ] Test on react
 * [ ] Docs write
 * [ ] github action to fmt, release
+* [ ] Native go runner
+* [ ] Native c# runner
 * [ ] Release v0.0.1
 * [ ] github action release
