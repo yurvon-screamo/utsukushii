@@ -1,5 +1,7 @@
+# todo: build on invoke go install
+# staticBuild
+
 coverage
-staticBuild
 utsukushii.json
 **/utsukushii.json
 junit.xml
