@@ -4,6 +4,11 @@ A set of utilities that will allow you to create a beautiful test report for you
 
 > in development
 
+supported report data sources:
+
+* junit report
+* go test output
+
 ![example](example.png)
 
 ## Install
