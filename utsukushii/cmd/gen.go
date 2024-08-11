@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 	"io/ioutil"
-	"utsukushii_generator/json_output"
-	"utsukushii_generator/junit_input"
+	"utsukushii/json_output"
+	"utsukushii/junit_input"
 
 	"github.com/spf13/cobra"
 )
@@ -57,7 +57,7 @@ var genCmd = &cobra.Command{
 	Use:     "gen",
 	Short:   "Generate report content",
 	Long:    `Generate report json-content file from your junit report`,
-	Example: "\nutsukushii_generator gen --title MyApplication --coverage 67 --junit myJunitReport.xml --output utsukushii.json",
+	Example: "\nutsukushii gen --title MyApplication --coverage 67 --junit myJunitReport.xml --output utsukushii.json",
 	Run:     handleGen,
 }
 

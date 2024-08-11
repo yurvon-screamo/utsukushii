@@ -1,7 +1,7 @@
 package main
 
 import (
-	"utsukushii_generator/cmd"
+	"utsukushii/cmd"
 )
 
 func main() {

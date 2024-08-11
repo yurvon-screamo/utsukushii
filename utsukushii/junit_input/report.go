@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"strconv"
 	"time"
-	"utsukushii_generator/model"
+	"utsukushii/model"
 )
 
 type JUnitReader struct {

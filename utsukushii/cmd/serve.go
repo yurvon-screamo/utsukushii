@@ -4,7 +4,7 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
-	"utsukushii_generator/utsukushii_ui"
+	"utsukushii/utsukushii_ui"
 
 	"github.com/spf13/cobra"
 )
@@ -32,7 +32,7 @@ var serveCmd = &cobra.Command{
 	Use:     "serve",
 	Short:   "Serve report",
 	Long:    `Run server and serve json report in beautify ui`,
-	Example: "\nutsukushii_generator serve --addr :8080 --content utsukushii.json",
+	Example: "\nutsukushii serve --addr :8080 --content utsukushii.json",
 	Run:     handleServe,
 }
 

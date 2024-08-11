@@ -1,4 +1,4 @@
-module utsukushii_generator
+module utsukushii
 
 go 1.22.2
 

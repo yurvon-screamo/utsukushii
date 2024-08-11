@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 	"time"
-	"utsukushii_generator/model"
+	"utsukushii/model"
 )
 
 type JsonPrinter struct {

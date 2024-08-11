@@ -1,0 +1,189 @@
+{
+  "title": "Utsukushii Report",
+  "timestamp": "11 Aug 24 12:46 UTC",
+  "duration": "1.025s",
+  "total": 26,
+  "coverage": 22,
+  "success": 26,
+  "dropped": 0,
+  "skipped": 0,
+  "tests": [
+    {
+      "name": "go.bergen.tech/backuper/infrastructure/nfs/client",
+      "state": "success",
+      "duration": "8ms",
+      "tests": [
+        {
+          "name": "TestDialService",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        }
+      ]
+    },
+    {
+      "name": "go.bergen.tech/backuper/infrastructure/nfs/client/xdr",
+      "state": "success",
+      "duration": "5ms",
+      "tests": [
+        {
+          "name": "TestRead",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestByteSlice",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        }
+      ]
+    },
+    {
+      "name": "go.bergen.tech/backuper/qa/unit",
+      "state": "success",
+      "duration": "1012ms",
+      "tests": [
+        {
+          "name": "TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Ошибка_выдачи_текущего_состояния_бэкапа",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Ошибка_выдачи_настроек_NFS",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Успешный_кейс_с_двумя_нодами",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestBackup/Отмена_создания_резервной_копии_системы/Проверка_отмены_бэкапа/Успешно_отменен",
+          "state": "success",
+          "duration": "1000ms",
+          "tests": null
+        },
+        {
+          "name": "TestBackup/Создание_резервной_копии_системы/Проверка_логики_мастер_ноды/Ошибка_от_нод",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestBackup",
+          "state": "success",
+          "duration": "1000ms",
+          "tests": null
+        },
+        {
+          "name": "TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_отправляется",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_места_достаточно",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_ошибка_получения_свободного_места_в_NFS",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_ошибка_создания_бэкапа",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestIsStorageOverflow/Создание_резервной_копии_системы/Проверка_необходимости_отправки_уведомления_о_недостаточном_месте_на_хранилище/Уведмление_не_отправляется_потому_что_бэкап_отменен",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestIsStorageOverflow",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Удаление_графика",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Создание_графика",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Обновление_графика",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestDetectScheduleAction/Создание_резервной_копии_системы_по_расписанию/Проверка_определения_действия_для_графика_бэкапа/Игнорировать",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestDetectScheduleAction",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestCreateCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_создания_крон_выражения/Успешный_сценарий",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestCreateCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_создания_крон_выражения/Ошибка_формата_времени",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestCreateCronExpression",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestParseCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_парсинга_крон_выражения/Успешный_сценарий",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestParseCronExpression/Создание_резервной_копии_системы_по_расписанию/Проверка_парсинга_крон_выражения/Пустое_крон_выражение_на_входе",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        },
+        {
+          "name": "TestParseCronExpression",
+          "state": "success",
+          "duration": "0ms",
+          "tests": null
+        }
+      ]
+    }
+  ]
+}
