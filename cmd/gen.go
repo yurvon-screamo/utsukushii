@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"time"
 
 	"github.com/spf13/cobra"
+
 	"github.com/yurvon-screamo/utsukushii/json_output"
 	"github.com/yurvon-screamo/utsukushii/junit_input"
 	"github.com/yurvon-screamo/utsukushii/model"
@@ -20,7 +21,7 @@ func handleGen(cmd *cobra.Command, args []string) {
 	}
 
 	for _, junit := range junits {
-		junitData, err := ioutil.ReadFile(junit)
+		junitData, err := os.ReadFile(junit)
 		if err != nil {
 			fmt.Println("Error reading file:", err)
 			return
@@ -45,7 +46,7 @@ func handleGen(cmd *cobra.Command, args []string) {
 		return
 	}
 
-	err = ioutil.WriteFile(output, jsonData, 0644)
+	err = os.WriteFile(output, jsonData, 0644)
 	if err != nil {
 		fmt.Println("Error writing JSON to file:", err)
 		return
