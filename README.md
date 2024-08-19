@@ -1,25 +1,26 @@
-# utsukushii
+# 🌸 Utsukushii - Beautify Your Test Reports
 
-A set of utilities that will allow you to create a beautiful test report for your application.
+Utsukushii is a powerful tool designed to transform your test reports into beautiful, easily understandable formats. Whether you're working with JUnit or Go test outputs, Utsukushii helps you present your results with clarity and style.
 
-> in development
+> 🚧 **In Development** - Contributions and feedback are welcome!
 
-supported report data sources:
+![Example Report](example.png)
 
-* junit report
-* go test output
+## 🚀 Features
 
-![example](example.png)
+- **JUnit Format Support**: Convert JUnit outputs into a unified, beautiful report.
+- **Go-Test Format Support**: Convert Go test outputs into a unified, beautiful report.
+- **Web UI**: Serve your reports through a sleek web interface.
 
-## Install
+## 📥 Installation
 
-With go:
+Install the latest version using Go:
 
 ```bash
 go install github.com/yurvon-screamo/utsukushii@latest
 ```
 
-## Usage
+## 📚 Usage
 
 ### Golang dev
 
@@ -29,78 +30,30 @@ Run test, gen content and serve:
 go test -v --json ./... | utsukushii go-dev
 ```
 
-### Generate content file
+### Generate and Serve Reports
 
-Take your test report(s) (now support junit and go test --json output), and generate content file:
+1. **Generate Content**:
 
-```bash
-utsukushii gen --junit ./my-junit1.xml --junit ./my-junit2.xml --go-json-test my-go-json-test-1.log --go-json-test my-go-json-test-2.log
-```
+   ```bash
+   utsukushii gen --junit ./my-junit1.xml --go-json-test my-go-json-test-1.log
+   ```
 
-if necessary add coverage, output path and report title params:
+2. **Serve the Report**:
 
-```bash
-utsukushii gen --junit ./junit.xml --junit -o my-utsukushii.json -t "my report" --coverage 65
-```
+   ```bash
+   utsukushii serve --content my-utsukushii.json
+   ```
 
-### Serve
+By default, the report is served at `http://localhost:8080`.
 
-Run web-ui for given content file:
+## 🛠️ Development and Design Goals
 
-```bash
-utsukushii serve
-```
+Our main goal is to convert test results into visually appealing reports. Utsukushii supports merging multiple reports, handling various formats, and presenting historical data.
 
-or add addr and content path params (on default ":8080" and "utsukushii.json"):
+## 🤝 Contributing
 
-```bash
-utsukushii serve --addr :18181 --content my-utsukushii.json
-```
+Contributions are welcome! Please check out the [issues](https://github.com/yurvon-screamo/utsukushii/issues) or create a new one if you have any ideas or bugs to report.
 
-add '--open-browser false' to disable browser opening
+## 📝 License
 
-## Design
-
-Main goal:
-
-> Convert test result into beatufy report and present it
-
-UJ:
-
-1) get the test report(s) in
-   * format: junit, ???
-   * native run: dotnet, go, cypress, ???
-2) generate utusukushi content file
-3) run web server with utusukushi ui with content file  
-
-```ascii
-              1. merge and group multi reports                                                
-              2. history rate from multi reports                                              
-              3. different output format?                                                     
-                                                                                              
-                              ┌───────────────────────────────────┐                           
-                              │                                   │                           
-  junit──────────────────────►│                                   │                           
-                              │                                   │                           
-                              │                                   │                           
-  vstest ────────────────────►│           generator               ├───────────────────► report
-                              │                                   │                           
-                              │                                   │                           
-..allure─────────────────────►│                                   │                           
-                              │                                   │                           
-                              └───────────────────────────────────┘                           
-
-other....                                                                                       
-```
-
-## TODO
-
-* [X] Mvp on junit single input
-* [X] Go serve
-* [X] Mvp on junit multi input
-* [X] Docs write
-* [X] github action to fmt, release
-* [X] Native go runner
-* [ ] Native c# runner
-* [ ] Release v0.0.1
-* [ ] github action release
+This project is licensed under the MIT License.
