@@ -1,6 +1,6 @@
 # 🌸 Utsukushii - Beautify Your Test Reports
 
-Utsukushii is a powerful tool designed to transform your test reports into beautiful, easily understandable formats. 
+Utsukushii is a small tool designed to transform your test reports into beautiful, easily understandable formats.
 
 Whether your test outputs format, Utsukushii helps you present your results with clarity and style.
 
@@ -12,7 +12,7 @@ Whether your test outputs format, Utsukushii helps you present your results with
 
 - **JUnit Format Support**: Convert JUnit outputs into a unified, beautiful report.
 - **Go-Test Format Support**: Convert Go test outputs into a unified, beautiful report.
-- **Web UI**: Serve your reports through a sleek web interface.
+- **Merge reports**: Union multiple reports into single.
 
 ## 📥 Installation
 
