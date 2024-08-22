@@ -7,6 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/yurvon-screamo/utsukushii/dotnet_trx_input"
 	"github.com/yurvon-screamo/utsukushii/gotest_input"
 	"github.com/yurvon-screamo/utsukushii/json_output"
 	"github.com/yurvon-screamo/utsukushii/junit_input"
@@ -31,6 +32,22 @@ func handleGen(cmd *cobra.Command, args []string) {
 		tests, err := junit_input.Convert(junitData)
 		if err != nil {
 			fmt.Println("Error convert junit:", err)
+			return
+		}
+
+		report.Enrich(tests)
+	}
+
+	for _, trx := range dotnetTrxs {
+		trxData, err := os.ReadFile(trx)
+		if err != nil {
+			fmt.Println("Error reading file:", err)
+			return
+		}
+
+		tests, err := dotnet_trx_input.Convert(trxData)
+		if err != nil {
+			fmt.Println("Error convert dotnet trx:", err)
 			return
 		}
 
@@ -74,6 +91,7 @@ func handleGen(cmd *cobra.Command, args []string) {
 
 var title string
 var goTests []string
+var dotnetTrxs []string
 var junits []string
 var coverage int16
 var output string
@@ -81,8 +99,8 @@ var output string
 var genCmd = &cobra.Command{
 	Use:     "gen",
 	Short:   "Generate report content",
-	Long:    `Generate report json-content file from your junit report or go test output`,
-	Example: "\nutsukushii gen --title MyApplication --coverage 67 --junit myJunitReport.xml --go-json-test myGoJson.log --output utsukushii.json",
+	Long:    `Generate report json-content file from your junit report or go test output or dotnet trx logger`,
+	Example: "\nutsukushii gen --title MyApplication --coverage 67 --junit myJunitReport.xml --dotnet-trx myTrx.trx --go-json-test myGoJson.log --output utsukushii.json",
 	Run:     handleGen,
 }
 
@@ -91,9 +109,10 @@ func init() {
 
 	genCmd.Flags().StringVarP(&title, "title", "t", "Utsukushii Report", "Report title")
 	genCmd.Flags().StringArrayVar(&junits, "junit", nil, "Junit reports paths for generate")
+	genCmd.Flags().StringArrayVar(&dotnetTrxs, "dotnet-trx", nil, "Trx reports paths for generate")
 	genCmd.Flags().StringArrayVar(&goTests, "go-json-test", nil, "Paths to files with 'go test --json' stdout")
 	genCmd.Flags().Int16Var(&coverage, "coverage", 0, "Code coverage in percent")
 	genCmd.Flags().StringVarP(&output, "output", "o", "utsukushii.json", "Target utsukushii file path")
 
-	genCmd.MarkFlagsOneRequired("junit", "go-json-test")
+	genCmd.MarkFlagsOneRequired("junit", "go-json-test", "dotnet-trx")
 }
