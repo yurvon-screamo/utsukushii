@@ -11,6 +11,7 @@ Whether your test outputs format, Utsukushii helps you present your results with
 ## 🚀 Features
 
 - **JUnit Format Support**: Convert JUnit outputs into a unified, beautiful report.
+- **Dotnet trx logger Support**: Convert dotnet trx logger report into a unified, beautiful report.
 - **Go-Test Format Support**: Convert Go test outputs into a unified, beautiful report.
 - **Merge reports**: Union multiple reports into single.
 
@@ -32,12 +33,20 @@ Run test, gen content and serve:
 go test -v --json ./... | utsukushii go-dev
 ```
 
+### Dotnet dev
+
+Run test, gen content and serve:
+
+```bash
+dotnet test --logger trx | utsukushii dotnet-dev
+```
+
 ### Generate and Serve Reports
 
 1. **Generate Content**:
 
    ```bash
-   utsukushii gen --junit ./my-junit1.xml --go-json-test my-go-json-test-1.log
+   utsukushii gen --junit ./my-junit1.xml --go-json-test my-go-json-test-1.log --dotnet-trx myTrx.trx
    ```
 
 2. **Serve the Report**:

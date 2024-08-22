@@ -24,7 +24,7 @@ export default function TestReportRow(props: TestReportRowProps) {
   };
 
   return (
-    <div className="justify-between font-mono lg:flex">
+    <div>
       <Table>
         <TableBody>
           {records.map((test, index) => (
@@ -56,11 +56,18 @@ export default function TestReportRow(props: TestReportRowProps) {
                   </TableCell>
                 </TableRow>
               )}
+              {selectedTest?.log && selectedTest.name == test.name && (
+                <TableRow>
+                  <TestLog
+                    testName={selectedTest.name}
+                    testLog={selectedTest.log}
+                  />
+                </TableRow>
+              )}
             </React.Fragment>
           ))}
         </TableBody>
       </Table>
-      {selectedTest?.log && <TestLog testName={selectedTest.name} testLog={selectedTest.log} />}
     </div>
   );
 }
