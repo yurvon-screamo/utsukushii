@@ -13,6 +13,7 @@ Whether your test outputs format, Utsukushii helps you present your results with
 - **JUnit Format Support**: Convert JUnit outputs into a unified, beautiful report.
 - **Dotnet trx logger Support**: Convert dotnet trx logger report into a unified, beautiful report.
 - **Go-Test Format Support**: Convert Go test outputs into a unified, beautiful report.
+- **Dev modes**: Run tests and look at their result in 1 command
 - **Merge reports**: Union multiple reports into single.
 
 ## 📥 Installation
