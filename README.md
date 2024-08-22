@@ -6,7 +6,7 @@ Whether your test outputs format, Utsukushii helps you present your results with
 
 > 🚧 **In Development** - Contributions and feedback are welcome!
 
-![Example Report](example.png)
+![Example Report](example_log.png)
 
 ## 🚀 Features
 
