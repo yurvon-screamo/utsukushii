@@ -22,7 +22,7 @@ func Convert(raw []byte) (*model.TestFile, error) {
 	}
 
 	for i := 0; i < len(lines); i++ {
-		line := lines[i]
+		line := strings.TrimSpace(lines[i])
 		if line == "" {
 			continue
 		}
@@ -43,7 +43,6 @@ func Convert(raw []byte) (*model.TestFile, error) {
 		if test.Test == "" {
 			if test.Action == "fail" {
 				packageMap[test.Package].State = model.StateDropped
-				result.Dropped++
 			} else if test.Action == "output" {
 				logMap[test.Package] += test.Output
 			}
@@ -63,7 +62,7 @@ func Convert(raw []byte) (*model.TestFile, error) {
 		current := &model.TestRecord{
 			Name:     test.Test,
 			State:    state,
-			Duration: (time.Duration(test.Elapsed) * time.Second),
+			Duration: (time.Duration(test.Elapsed * float64(time.Second))),
 		}
 
 		group := packageMap[test.Package]
@@ -91,6 +90,7 @@ func Convert(raw []byte) (*model.TestFile, error) {
 			if l, v := logMap[group.Name]; v {
 				l = strings.TrimRight(l, "\n")
 				group.Log = &l
+				result.Dropped++
 			}
 		}
 

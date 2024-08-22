@@ -1,10 +1,11 @@
-package junit_input
+package junit_input_test
 
 import (
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/yurvon-screamo/utsukushii/junit_input"
 	"github.com/yurvon-screamo/utsukushii/model"
 )
 
@@ -13,7 +14,7 @@ func TestInvalidJunitReportIsReturnError(t *testing.T) {
 	const junitInput = "helpme"
 
 	// act
-	tests, err := Convert([]byte(junitInput))
+	tests, err := junit_input.Convert([]byte(junitInput))
 
 	// assert
 	assert.Nil(t, tests, "Tests must be nil on invalid junit content")
@@ -49,7 +50,7 @@ func TestValidJunitReportIsConverted(t *testing.T) {
 </testsuites>`
 
 	// act
-	tests, err := Convert([]byte(junitInput))
+	tests, err := junit_input.Convert([]byte(junitInput))
 
 	// assert
 	assert.Nil(t, err, "Error must be nil on valid junit content")
