@@ -19,5 +19,10 @@ type unitTestResult struct {
 }
 
 type output struct {
-	Log string `xml:"StdOut"`
+	ErrorInfo *errorInfo `xml:"ErrorInfo"`
+}
+
+type errorInfo struct {
+	Message    string `xml:"Message"`
+	StackTrace string `xml:"StackTrace"`
 }

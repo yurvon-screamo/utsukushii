@@ -39,11 +39,16 @@ func Convert(raw []byte) (*model.TestFile, error) {
 			testFile.Dropped++
 		}
 
+		var log string
+		if result.Output.ErrorInfo != nil {
+			log = result.Output.ErrorInfo.Message + "\n" + result.Output.ErrorInfo.StackTrace
+		}
+
 		testRecord := &model.TestRecord{
 			Name:     result.TestName,
 			State:    state,
 			Duration: duration,
-			Log:      &result.Output.Log,
+			Log:      &log,
 		}
 
 		testFile.Records = append(testFile.Records, testRecord)

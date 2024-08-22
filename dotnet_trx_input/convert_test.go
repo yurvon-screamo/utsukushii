@@ -27,7 +27,12 @@ func TestConvert_ReturnsTestFileWithCorrectCountsAndRecords(t *testing.T) {
 			<Results>
 				<UnitTestResult testName="Test1" outcome="Passed" duration="00:00:01.234" />
 				<UnitTestResult testName="Test2" outcome="Failed" duration="00:00:02.345">
-					<Output><StdOut>Some log output</StdOut></Output>
+					<Output>
+						<ErrorInfo>
+							<Message>Shouldly.ShouldAssertException</Message>
+							<StackTrace>at Saunter</StackTrace>
+						</ErrorInfo>
+					</Output>
 				</UnitTestResult>
 				<UnitTestResult testName="Test3" outcome="Skipped" duration="00:00:00.678" />
 			</Results>
@@ -50,7 +55,7 @@ func TestConvert_ReturnsTestFileWithCorrectCountsAndRecords(t *testing.T) {
 			Name:     "Test2",
 			State:    model.StateDropped,
 			Duration: 2345 * time.Millisecond,
-			Log:      stringPointer("Some log output"),
+			Log:      stringPointer("Shouldly.ShouldAssertException\nat Saunter"),
 		},
 		{
 			Name:     "Test3",

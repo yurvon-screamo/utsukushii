@@ -56,13 +56,18 @@ export default function TestReportRow(props: TestReportRowProps) {
                   </TableCell>
                 </TableRow>
               )}
+              {selectedTest?.log && selectedTest.name == test.name && (
+                <TableRow>
+                  <TestLog
+                    testName={selectedTest.name}
+                    testLog={selectedTest.log}
+                  />
+                </TableRow>
+              )}
             </React.Fragment>
           ))}
         </TableBody>
       </Table>
-      {selectedTest?.log && (
-        <TestLog testName={selectedTest.name} testLog={selectedTest.log} />
-      )}
     </div>
   );
 }
