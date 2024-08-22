@@ -9,7 +9,7 @@ export interface TestLogProps {
 
 export default function TestLog(props: TestLogProps) {
   const fadeInStyle = {
-    "white-space": "pre-wrap",
+    "white-space": "pre",
     transition: "opacity 500ms linear",
   };
 
