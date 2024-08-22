@@ -13,7 +13,7 @@ export default function TestReport(props: TestReportProps) {
   const content = props.content;
 
   return (
-    <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+    <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex">
       <Card className="w-full">
         <CardHeader className="flex items-left justify-between">
           <div className="items-center grid grid-cols-3 gap-4">
