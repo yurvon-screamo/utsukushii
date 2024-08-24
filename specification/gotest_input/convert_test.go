@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/yurvon-screamo/utsukushii/gotest_input"
 	"github.com/yurvon-screamo/utsukushii/model"
+	"github.com/yurvon-screamo/utsukushii/specification/gotest_input"
 )
 
 func TestConvert_WhenAllTestsPass_ShouldReturnSuccess(t *testing.T) {

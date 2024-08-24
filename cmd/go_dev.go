@@ -8,9 +8,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/yurvon-screamo/utsukushii/gotest_input"
-	"github.com/yurvon-screamo/utsukushii/json_output"
 	"github.com/yurvon-screamo/utsukushii/model"
+	"github.com/yurvon-screamo/utsukushii/specification/gotest_input"
+	"github.com/yurvon-screamo/utsukushii/specification/json_output"
 )
 
 func handleGoDev(cmd *cobra.Command, args []string) {

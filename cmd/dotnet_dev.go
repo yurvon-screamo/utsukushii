@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/yurvon-screamo/utsukushii/dotnet_trx_input"
-	"github.com/yurvon-screamo/utsukushii/json_output"
 	"github.com/yurvon-screamo/utsukushii/model"
+	"github.com/yurvon-screamo/utsukushii/specification/dotnet_trx_input"
+	"github.com/yurvon-screamo/utsukushii/specification/json_output"
 )
 
 func handleDotnetDev(cmd *cobra.Command, args []string) {
