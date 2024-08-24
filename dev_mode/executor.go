@@ -3,8 +3,10 @@ package dev_mode
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/yurvon-screamo/utsukushii/model"
@@ -24,6 +26,8 @@ func RunDevMode(config *DevModeConfig) error {
 	content := &serve.UtsukushiiContent{
 		JsonContent: jsonData,
 	}
+
+	http.HandleFunc("/dev_mode/check", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("ok")) })
 
 	http.HandleFunc("/dev_mode/cmd", func(w http.ResponseWriter, r *http.Request) {
 		jsonData, err = getJsonData(config)
@@ -64,7 +68,27 @@ func getJsonData(config *DevModeConfig) ([]byte, error) {
 			return nil, err
 		}
 	} else if config.Lang == dotnet {
-		testFile, err = dotnet_trx_input.Convert(out)
+		var fileTrx string
+		for _, line := range strings.Split(string(out), "\n") {
+			if strings.HasSuffix(line, ".trx") {
+				parts := strings.SplitN(line, ":", 2)
+				if len(parts) == 2 {
+					fileTrx = strings.TrimSpace(parts[1])
+				}
+			}
+		}
+
+		if fileTrx == "" {
+			return nil, fmt.Errorf("Not found trx file path")
+		}
+
+		raw, err := os.ReadFile(fileTrx)
+		if err != nil {
+			fmt.Println("Error while read trx report:", err)
+			return nil, err
+		}
+
+		testFile, err = dotnet_trx_input.Convert(raw)
 		if err != nil {
 			fmt.Println("error on convert dotnet_trx_input", err)
 			return nil, err

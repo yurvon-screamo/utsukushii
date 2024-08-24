@@ -1,3 +1,2 @@
 cmd: go test -v --json ./...
 lang: go
-coverage: 22

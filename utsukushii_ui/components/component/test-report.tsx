@@ -4,26 +4,39 @@ import * as React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ReportContent } from "@/lib/model";
 import TestReportRow from "./test-report-row";
+import useSWR from "swr";
+import { DevModeCheck, DevModeCmdUri } from "@/lib/utils";
+import { DevModeRun } from "./dev-mode-run";
 
 export interface TestReportProps {
   content: ReportContent;
+  reload: React.EventHandler<any>;
 }
 
 export default function TestReport(props: TestReportProps) {
+  const isDevModeResponse = useSWR(DevModeCheck, fetch);
+  if (isDevModeResponse.isLoading) return <div>loading...</div>;
+
   const content = props.content;
+  const isDevMode =
+    isDevModeResponse.data?.status && isDevModeResponse.data?.status < 300;
 
   return (
     <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex">
       <Card className="w-full">
         <CardHeader className="flex items-left justify-between">
-          <div className="items-center grid grid-cols-3 gap-4">
+          <div className="items-center grid grid-cols-3">
             <div className="flex items-center gap-2">
-              <CalendarIcon className="h-3 w-3 text-muted-foreground" />
+              <CalendarIcon
+                onClick={() => fetch(DevModeCmdUri)}
+                className="h-3 w-3 text-muted-foreground"
+              />
               <span className="text-xs text-muted-foreground">
                 {content.timestamp}
               </span>
             </div>
             <CardTitle>{content.title}</CardTitle>
+            {isDevMode === true && <DevModeRun reload={props.reload} />}
           </div>
         </CardHeader>
 
