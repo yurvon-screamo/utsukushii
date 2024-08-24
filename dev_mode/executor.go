@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os/exec"
+	"runtime"
 	"time"
 
 	"github.com/yurvon-screamo/utsukushii/model"
@@ -43,13 +44,19 @@ func RunDevMode(config *DevModeConfig) error {
 }
 
 func getJsonData(config *DevModeConfig) ([]byte, error) {
-	var testFile *model.TestFile
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("pwsh", "-c", config.Cmd)
+	} else {
+		cmd = exec.Command("sh", "-c", config.Cmd)
+	}
 
-	out, err := exec.Command(config.Cmd).Output()
+	out, err := cmd.Output()
 	if err != nil {
 		fmt.Println("error on run cmd", err)
 	}
 
+	var testFile *model.TestFile
 	if config.Lang == golang {
 		testFile, err = gotest_input.Convert(out)
 		if err != nil {
