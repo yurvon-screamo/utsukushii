@@ -1,39 +1,16 @@
 package cmd
 
 import (
-	"io/fs"
-	"log"
-	"net/http"
-
-	"github.com/pkg/browser"
 	"github.com/spf13/cobra"
-	"github.com/yurvon-screamo/utsukushii/utsukushii_ui"
+	"github.com/yurvon-screamo/utsukushii/serve"
 )
 
 func handleServe(cmd *cobra.Command, args []string) {
-	distFS, err := fs.Sub(utsukushii_ui.UtsukushiiUi, "staticBuild")
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	http.HandleFunc("/utsukushii.json", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, r.URL.Path[1:])
-	})
+	serve.RunUiHandle()
+	serve.RunUtsukushiiFsContentHandle(content)
 
-	http.Handle("/", http.FileServer(http.FS(distFS)))
-
-	log.Println("Starting HTTP server at", addr)
-
-	if open {
-		url := addr
-		if addr[0] == ':' {
-			url = "localhost" + url
-		}
-		url = "http://" + url
-		browser.OpenURL(url)
-	}
-
-	log.Fatal(http.ListenAndServe(addr, nil))
+	serve.ListenAndServe(addr, open)
 }
 
 var addr string

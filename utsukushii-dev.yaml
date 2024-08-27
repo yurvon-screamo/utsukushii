@@ -1,0 +1,11 @@
+# Required part
+# The command to run the tests 
+cmd: go test -v --json ./...
+# Your solution language, oneof - 'go', '.net' 
+lang: go
+
+# Optional part
+# title: my report title
+# coverage: 46
+# addr: ':8080'
+# ignore_open: true

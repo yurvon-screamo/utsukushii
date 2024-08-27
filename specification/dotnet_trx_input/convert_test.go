@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/yurvon-screamo/utsukushii/dotnet_trx_input"
 	"github.com/yurvon-screamo/utsukushii/model"
+	"github.com/yurvon-screamo/utsukushii/specification/dotnet_trx_input"
 )
 
 func TestConvert_ReturnsError_WhenXMLIsInvalid(t *testing.T) {

@@ -10,10 +10,10 @@ Whether your test outputs format, Utsukushii helps you present your results with
 
 ## 🚀 Features
 
+- **Dev mode**: Run test from UI !
 - **JUnit Format Support**: Convert JUnit outputs into a unified, beautiful report.
 - **Dotnet trx logger Support**: Convert dotnet trx logger report into a unified, beautiful report.
 - **Go-Test Format Support**: Convert Go test outputs into a unified, beautiful report.
-- **Dev modes**: Run tests and look at their result in 1 command
 - **Merge reports**: Union multiple reports into single.
 
 ## 📥 Installation
@@ -26,23 +26,35 @@ go install github.com/yurvon-screamo/utsukushii@latest
 
 ## 📚 Usage
 
-### Golang dev
+### Dev mode
 
-Run test, gen content and serve:
+![dev_mode](dev_mode.png)
 
-```bash
-go test -v --json ./... | utsukushii go-dev
-```
+1) Create config file `utsukushii-dev.yaml`:
 
-### Dotnet dev
+   ```yaml
+   # Required part
+   # The command to run the tests 
+   cmd: go test -v --json ./...
+   # Your solution language, oneof - 'go', '.net' 
+   lang: go
 
-Run test, gen content and serve:
+   # Optional part
+   # title: my report title
+   # coverage: 46
+   # addr: ':8080'
+   # ignore_open: true
+   ```
 
-```bash
-dotnet test --logger trx | utsukushii dotnet-dev
-```
+2) Start it:
+
+   ```bash
+   utsukushii dev
+   ```
 
 ### Generate and Serve Reports
+
+![gen_serve](gen_serve.png)
 
 1. **Generate Content**:
 
@@ -55,6 +67,12 @@ dotnet test --logger trx | utsukushii dotnet-dev
    ```bash
    utsukushii serve --content my-utsukushii.json
    ```
+
+Support:
+
+- go test json
+- dotnet test trx
+- junit reports
 
 By default, the report is served at `http://localhost:8080`.
 
